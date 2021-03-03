@@ -61,7 +61,6 @@ public class CustomerController {
         customer.setId(id);
         customerService.save(customer, id);
         return new ModelAndView("list", "list", customerService.findAll());
-//        return "redirect:/";
     }
 
     @GetMapping("/create")
@@ -86,5 +85,14 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView("redirect:/customer");
         customerService.remove(id);
         return modelAndView;
+    }
+    @GetMapping("/view/{id}")
+//    public String view(@PathVariable int id, Model model) {
+//        model.addAttribute("customer", customerService.findById(id));
+//        return "/view";
+//    }
+    public ModelAndView viewDetail(@PathVariable int id){
+//        ModelAndView modelAndView = new ModelAndView("view");
+        return new ModelAndView("view", "customer", customerService.findById(id));
     }
 }

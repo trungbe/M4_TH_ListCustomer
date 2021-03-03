@@ -3,21 +3,23 @@ package service;
 import model.Customer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerService implements ICustomerService {
-    private static List<Customer> list = new ArrayList<>();
+    private static Map<Integer,Customer> list = new HashMap<>();
 
     static {
-        list.add(new Customer(0, "trung", "trungbe@gmail.com", "hp"));
-        list.add(new Customer(1, "thinh", "thinh@gmail.com", "tb"));
-        list.add(new Customer(2, "dat", "datvu@gmail.com", "hn"));
-        list.add(new Customer(3, "ky", "kypt@gmail.com", "ht"));
+        list.put(1,new Customer(1, "trung", "trungbe@gmail.com", "hp"));
+        list.put(2,new Customer(2, "thinh", "thinh@gmail.com", "tb"));
+        list.put(3,new Customer(3, "dat", "datvu@gmail.com", "hn"));
+        list.put(4,new Customer(4, "ky", "kypt@gmail.com", "ht"));
     }
 
     @Override
     public List findAll() {
-        return list;
+        return new ArrayList<>(list.values());
     }
 
     @Override
@@ -27,13 +29,14 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public boolean create(Customer customer) {
-        list.add(customer);
+        list.put(customer.getId(), customer);
         return false;
     }
 
+
     @Override
     public boolean save(Customer customer, int id) {
-        list.set(id, customer);
+        list.put(id, customer);
         return false;
     }
 

@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
+    <head th:replace="/layout :: head"></head>
 </head>
 <body>
-<div th:replace="layout::header"></div>
-<h1>Form create</h1>
+<h3>Form create</h3>
 <th:block th:if="${mess}">
     <span th:text="${mess}"></span>
 </th:block>
-<form th:object="${customer}" method="post">
-    <input th:field="*{name}"/>
-    <input th:field="*{email}"/>
-    <input th:field="*{address}">
+<form id="form" th:object="${customer}" method="post">
+    <div>
+        <label>Name</label>
+        <input type="text" th:field="*{name}"/>
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="email" th:field="*{email}"/>
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" th:field="*{address}"/>
+    </div>
     <button type="submit">Create</button>
 </form>
 <a href="/customer">Back list customer</a>
-<div th:replace="layout::footer"></div>
-
+<footer th:replace="/layout :: footer"></footer>
 </body>
 </html>
